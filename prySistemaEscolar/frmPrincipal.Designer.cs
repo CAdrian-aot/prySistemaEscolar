@@ -63,8 +63,8 @@
             pcbAlumnos.SizeMode = PictureBoxSizeMode.StretchImage;
             pcbAlumnos.TabIndex = 1;
             pcbAlumnos.TabStop = false;
-            pcbAlumnos.MouseDown += pcbAlumnos_MouseDown;
-            pcbAlumnos.MouseUp += pcbAlumnos_MouseUp;
+            pcbAlumnos.MouseDown += pcbGeneral_MouseDown;
+            pcbAlumnos.MouseUp += pcbGeneral_MouseUp;
             // 
             // pcbDocentes
             // 
@@ -75,8 +75,8 @@
             pcbDocentes.SizeMode = PictureBoxSizeMode.StretchImage;
             pcbDocentes.TabIndex = 2;
             pcbDocentes.TabStop = false;
-            pcbDocentes.MouseDown += pcbDocentes_MouseDown;
-            pcbDocentes.MouseUp += pcbDocentes_MouseUp;
+            pcbDocentes.MouseDown += pcbGeneral_MouseDown;
+            pcbDocentes.MouseUp += pcbGeneral_MouseUp;
             // 
             // pcbCarreras
             // 
@@ -87,8 +87,8 @@
             pcbCarreras.SizeMode = PictureBoxSizeMode.StretchImage;
             pcbCarreras.TabIndex = 3;
             pcbCarreras.TabStop = false;
-            pcbCarreras.MouseDown += pcbCarreras_MouseDown;
-            pcbCarreras.MouseUp += pcbCarreras_MouseUp;
+            pcbCarreras.MouseDown += pcbGeneral_MouseDown;
+            pcbCarreras.MouseUp += pcbGeneral_MouseUp;
             // 
             // pcbUsuarios
             // 
@@ -99,8 +99,8 @@
             pcbUsuarios.SizeMode = PictureBoxSizeMode.StretchImage;
             pcbUsuarios.TabIndex = 4;
             pcbUsuarios.TabStop = false;
-            pcbUsuarios.MouseDown += pcbUsuarios_MouseDown;
-            pcbUsuarios.MouseUp += pcbUsuarios_MouseUp;
+            pcbUsuarios.MouseDown += pcbGeneral_MouseDown;
+            pcbUsuarios.MouseUp += pcbGeneral_MouseUp;
             // 
             // pcbTitulo
             // 
