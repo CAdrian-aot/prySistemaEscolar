@@ -1,3 +1,5 @@
+using pry_LOGINNN;
+
 namespace prySistemaEscolar
 {
     internal static class Program
@@ -11,7 +13,13 @@ namespace prySistemaEscolar
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmLogin());
+            using(frmLogin login = new frmLogin())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new frmPrincipal());
+                }
+            }
         }
     }
 }
