@@ -9,7 +9,7 @@ namespace prySistemaEscolar
 {
     internal class clsLogin
     {
-        //Prueba para ver si se sube al repositorio
+        
         private string usuario;
         private string password;
 
