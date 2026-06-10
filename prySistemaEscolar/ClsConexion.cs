@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace prySistemaEscolar
 {
-    internal class ClsSagi
+    internal class ClsConexion
     {
         public string hello;
     }
