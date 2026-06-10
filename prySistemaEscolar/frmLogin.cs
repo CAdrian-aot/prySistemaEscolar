@@ -11,6 +11,7 @@ namespace prySistemaEscolar
         {
             try
             {
+
                 clsLogin login = new clsLogin();
                 login.Usuario = txtUsuario.Text;
                 login.Password = txtPassword.Text;/////
