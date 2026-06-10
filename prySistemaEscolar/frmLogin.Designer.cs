@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             pcbLogin = new PictureBox();
             txtUsuario = new TextBox();
-            txtContrasena = new TextBox();
+            txtPassword = new TextBox();
             btnAcceder = new Button();
             btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)pcbLogin).BeginInit();
@@ -56,15 +56,15 @@
             txtUsuario.Size = new Size(301, 34);
             txtUsuario.TabIndex = 1;
             // 
-            // txtContrasena
+            // txtPassword
             // 
-            txtContrasena.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            txtContrasena.Location = new Point(392, 130);
-            txtContrasena.Name = "txtContrasena";
-            txtContrasena.PlaceholderText = "Contraseña de usuario";
-            txtContrasena.Size = new Size(301, 34);
-            txtContrasena.TabIndex = 2;
-            txtContrasena.UseSystemPasswordChar = true;
+            txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            txtPassword.Location = new Point(392, 130);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "Contraseña de usuario";
+            txtPassword.Size = new Size(301, 34);
+            txtPassword.TabIndex = 2;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnAcceder
             // 
@@ -75,6 +75,7 @@
             btnAcceder.TabIndex = 5;
             btnAcceder.Text = "Acceder";
             btnAcceder.UseVisualStyleBackColor = true;
+            btnAcceder.Click += btnAcceder_Click;
             // 
             // btnSalir
             // 
@@ -85,6 +86,7 @@
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // frmLogin
             // 
@@ -93,7 +95,7 @@
             ClientSize = new Size(800, 303);
             Controls.Add(btnSalir);
             Controls.Add(btnAcceder);
-            Controls.Add(txtContrasena);
+            Controls.Add(txtPassword);
             Controls.Add(txtUsuario);
             Controls.Add(pcbLogin);
             Name = "frmLogin";
@@ -107,7 +109,7 @@
 
         private PictureBox pcbLogin;
         private TextBox txtUsuario;
-        private TextBox txtContrasena;
+        private TextBox txtPassword;
         private Button btnAcceder;
         private Button btnSalir;
     }
