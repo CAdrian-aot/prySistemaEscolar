@@ -18,7 +18,7 @@ namespace prySistemaEscolar
 
         private string cadenaConexion => $"server={host}; database={bd}; user={usuario}; password={password}; port={puerto};";
 
-        public MySqlConnection abrirConexion()
+        public MySqlConnection AbrirConexion()
         {
             var conexion = new MySqlConnection(cadenaConexion);
             try
@@ -32,7 +32,7 @@ namespace prySistemaEscolar
             }
         }
 
-        public void cerrarConexion(MySqlConnection conexion)
+        public void CerrarConexion(MySqlConnection conexion)
         {
             try
             {
