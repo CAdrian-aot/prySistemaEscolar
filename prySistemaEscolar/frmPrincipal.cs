@@ -26,5 +26,17 @@ namespace pry_LOGINNN
             PictureBox pcb = (PictureBox)miPicture;
             pcb.Location = new Point(pcb.Location.X - 3, pcb.Location.Y - 3);
         }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            pcbAlumnos.Parent = pcbMenu;
+            pcbCarreras.Parent = pcbMenu;
+            pcbDocentes.Parent = pcbMenu;
+            pcbUsuarios.Parent = pcbMenu;
+            pcbAlumnos.BackColor = Color.Transparent;
+            pcbCarreras.BackColor = Color.Transparent;
+            pcbDocentes.BackColor = Color.Transparent;
+            pcbUsuarios.BackColor = Color.Transparent;
+        }
     }
 }

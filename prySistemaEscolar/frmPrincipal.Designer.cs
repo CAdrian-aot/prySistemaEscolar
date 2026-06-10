@@ -135,6 +135,7 @@
             Name = "frmPrincipal";
             Text = "Principal";
             WindowState = FormWindowState.Maximized;
+            Load += frmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pcbMenu).EndInit();
             ((System.ComponentModel.ISupportInitialize)pcbAlumnos).EndInit();
             ((System.ComponentModel.ISupportInitialize)pcbDocentes).EndInit();
