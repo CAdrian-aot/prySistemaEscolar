@@ -1,3 +1,5 @@
+using pry_LOGINNN;
+
 namespace prySistemaEscolar
 {
     internal static class Program
@@ -12,6 +14,7 @@ namespace prySistemaEscolar
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new frmLogin());
+           
         }
     }
 }
