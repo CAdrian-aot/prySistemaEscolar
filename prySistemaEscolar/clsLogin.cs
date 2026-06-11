@@ -55,8 +55,5 @@ namespace prySistemaEscolar
             }
         }//fin del metodo
 
-
-
-
     }
 }
