@@ -30,13 +30,13 @@ namespace prySistemaEscolar
                     using (var consulta = new MySqlCommand(sql, conexion))
                     {
                         consulta.Parameters.AddWithValue("@usuario", usuario);
-                        consulta.Parameters.AddWithValue("password", password);
+                        consulta.Parameters.AddWithValue("Qpassword", password);
 
                         using (var resultado = consulta.ExecuteReader())
                         {
                             if (resultado.Read())
                             {
-                                perfil = resultado.GetString("vchrol");
+                                perfil = resultado.GetString("perfil");
                                 MessageBox.Show("Tu perfil es: " + perfil, "Sistema");
                                 return true;
                             }
@@ -54,9 +54,6 @@ namespace prySistemaEscolar
                 throw new Exception(ex.Message, ex);
             }
         }//fin del metodo
-
-
-
 
     }
 }
