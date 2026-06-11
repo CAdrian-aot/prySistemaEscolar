@@ -23,14 +23,14 @@ namespace prySistemaEscolar
             try
             {
                 ClsConexion conexionBD = new ClsConexion();
-                using (var conexion = conexionBD.abrirConexion())
+                using (var conexion = conexionBD.AbrirConexion())
                 {
-                    string sql = "SELECT perfil FROM tblUsuarios " +
-                                 "WHERE nombreUsuario = @usuario AND password = @password;";
+                    string sql = "SELECT perfil FROM tblusuarios " +
+                                 "WHERE nombreUsuario = @usuario AND PASSWORD = @password;";
                     using (var consulta = new MySqlCommand(sql, conexion))
                     {
                         consulta.Parameters.AddWithValue("@usuario", usuario);
-                        consulta.Parameters.AddWithValue("Qpassword", password);
+                        consulta.Parameters.AddWithValue("@password", password);
 
                         using (var resultado = consulta.ExecuteReader())
                         {
