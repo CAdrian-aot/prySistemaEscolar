@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prySistemaEscolar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,6 +30,7 @@ namespace pry_LOGINNN
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            // Cambiando el parent de los picture
             pcbAlumnos.Parent = pcbMenu;
             pcbCarreras.Parent = pcbMenu;
             pcbDocentes.Parent = pcbMenu;
@@ -37,6 +39,10 @@ namespace pry_LOGINNN
             pcbCarreras.BackColor = Color.Transparent;
             pcbDocentes.BackColor = Color.Transparent;
             pcbUsuarios.BackColor = Color.Transparent;
+
+            // Vrerificando permisos
+            pcbCarreras.Enabled = clsLogin.EsAdmin;
+            pcbDocentes.Enabled = clsLogin.EsAdmin;
         }
     }
 }
