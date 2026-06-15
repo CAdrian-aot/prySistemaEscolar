@@ -43,6 +43,8 @@ namespace pry_LOGINNN
             // Vrerificando permisos
             pcbCarreras.Enabled = clsLogin.EsAdmin;
             pcbDocentes.Enabled = clsLogin.EsAdmin;
+            pcbUsuarios.Enabled = clsLogin.EsAdmin;
+            pcbAlumnos.Enabled = clsLogin.EsAdmin || clsLogin.EsDocente;
         }
     }
 }
