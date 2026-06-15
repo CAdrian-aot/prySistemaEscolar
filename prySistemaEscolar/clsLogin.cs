@@ -30,10 +30,16 @@ namespace prySistemaEscolar
             switch (perfil)
             {
                 case "Administrador":
+                    esAdmin = true;
+                    esDocente = false;
                     break;
                 case "Docente":
+                    esAdmin = false;
+                    esDocente = true;
                     break;
                 default:
+                    esAdmin = false;
+                    esDocente=false;
                     break;
             }
         }
@@ -57,8 +63,15 @@ namespace prySistemaEscolar
                             if (resultado.Read())
                             {
                                 perfil = resultado.GetString("perfil");
+                                AsignarPermisos();
+                                if (!esAdmin && !esDocente)
+                                {
+                                    throw new Exception($"El perfil {perfil} no tiene permisos para acceder");
+                                }
+
                                 MessageBox.Show("Tu perfil es: " + perfil, "Sistema");
-                                return true;
+                                 return true;
+
                             }
                             else
                             {
