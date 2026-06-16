@@ -51,8 +51,8 @@ namespace prySistemaEscolar
                 ClsConexion conexionBD = new ClsConexion();
                 using (var conexion = conexionBD.AbrirConexion())
                 {
-                    string sql = "SELECT perfil FROM tblusuarios " +
-                                 "WHERE nombreUsuario = @usuario AND PASSWORD = @password;";
+                    string sql = "SELECT vchperfil FROM tblusuarios " +
+                                 "WHERE vchnombreUsuario = @usuario AND vchPASSWORD = @password;";
                     using (var consulta = new MySqlCommand(sql, conexion))
                     {
                         consulta.Parameters.AddWithValue("@usuario", usuario);
