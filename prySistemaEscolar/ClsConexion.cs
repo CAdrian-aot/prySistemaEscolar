@@ -11,7 +11,7 @@ namespace prySistemaEscolar
     internal class ClsConexion
     {
         private string host = "189.240.192.140";
-        private string bd = "bdescuelaequipo1";
+        private string bd = "bdescuelagdequipo1";
         private string usuario = "gdEquipo1";
         private string password = "grupo1";
         private string puerto = "3306";
