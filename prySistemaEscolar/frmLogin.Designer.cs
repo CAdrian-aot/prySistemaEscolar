@@ -100,6 +100,7 @@
             Controls.Add(pcbLogin);
             Name = "frmLogin";
             Text = "Control de acceso";
+            Load += frmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pcbLogin).EndInit();
             ResumeLayout(false);
             PerformLayout();
