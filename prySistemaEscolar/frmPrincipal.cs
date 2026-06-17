@@ -11,6 +11,7 @@ namespace pry_LOGINNN
 {
     public partial class frmPrincipal : Form
     {
+        ClsPrincipal principal;
         public frmPrincipal()
         {
             InitializeComponent();
@@ -49,7 +50,8 @@ namespace pry_LOGINNN
 
         private void pcbCarreras_Click(object sender, EventArgs e)
         {
-
+            principal = new ClsPrincipal();
+            principal.agregarAlcontenedor(new frmCarreras(), pnlContenedor);
         }
     }
 }
