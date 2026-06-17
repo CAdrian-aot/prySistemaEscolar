@@ -46,5 +46,10 @@ namespace pry_LOGINNN
             pcbUsuarios.Enabled = clsLogin.EsAdmin;
             pcbAlumnos.Enabled = clsLogin.EsAdmin || clsLogin.EsDocente;
         }
+
+        private void pcbCarreras_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
