@@ -15,7 +15,7 @@ namespace prySistemaEscolar
         //Usamos una tabla temporal
         private DataTable tabla;
 
-        //Metodo para cargar datos en el DataGrid
+        //Metodo para cargar datos en el DataGrid//
         public DataTable CargarDataGrid()
         {
             tabla = new DataTable();
