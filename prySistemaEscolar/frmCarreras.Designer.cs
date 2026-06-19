@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             pnlDatos = new Panel();
@@ -36,8 +38,8 @@
             btnGuardar = new Button();
             txtDescripcion = new TextBox();
             txtNombreCarrera = new TextBox();
-            dgvCarreras = new DataGridView();
             textBox3 = new TextBox();
+            dgvCarreras = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCarreras).BeginInit();
@@ -123,15 +125,6 @@
             txtNombreCarrera.Size = new Size(491, 43);
             txtNombreCarrera.TabIndex = 0;
             // 
-            // dgvCarreras
-            // 
-            dgvCarreras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCarreras.Location = new Point(150, 477);
-            dgvCarreras.Name = "dgvCarreras";
-            dgvCarreras.RowHeadersWidth = 51;
-            dgvCarreras.Size = new Size(941, 145);
-            dgvCarreras.TabIndex = 3;
-            // 
             // textBox3
             // 
             textBox3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -140,6 +133,33 @@
             textBox3.PlaceholderText = "Buscar carrera";
             textBox3.Size = new Size(239, 43);
             textBox3.TabIndex = 4;
+            // 
+            // dgvCarreras
+            // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 224, 192);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Teal;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCarreras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCarreras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvCarreras.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvCarreras.EnableHeadersVisualStyles = false;
+            dgvCarreras.Location = new Point(150, 477);
+            dgvCarreras.Name = "dgvCarreras";
+            dgvCarreras.RowHeadersWidth = 51;
+            dgvCarreras.RowTemplate.Height = 35;
+            dgvCarreras.Size = new Size(941, 133);
+            dgvCarreras.TabIndex = 3;
             // 
             // frmCarreras
             // 
@@ -174,7 +194,7 @@
         private Button btnNuevo;
         private Button btnEliminar;
         private Button btnGuardar;
-        private DataGridView dgvCarreras;
         private TextBox textBox3;
+        private DataGridView dgvCarreras;
     }
 }

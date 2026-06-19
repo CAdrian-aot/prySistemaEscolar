@@ -13,7 +13,7 @@ namespace prySistemaEscolar
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
+            /*
              using(frmLogin login = new frmLogin())
             {
                 if (login.ShowDialog() == DialogResult.OK)
@@ -21,6 +21,7 @@ namespace prySistemaEscolar
                     Application.Run(new frmPrincipal());
                 }
              }
+            */
             Application.Run(new frmCarreras());
         }
     }
