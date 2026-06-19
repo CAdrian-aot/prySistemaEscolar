@@ -10,22 +10,38 @@ namespace prySistemaEscolar
 {
     internal class clsCarreras
     {
+        private string nombreCarrera;
         //Usamos un adaptador
         private MySqlDataAdapter consulta;
         //Usamos una tabla temporal
         private DataTable tabla;
+
+        public string NombreCarrera { get => nombreCarrera; set => nombreCarrera = value; }
 
         //Metodo para cargar datos en el DataGrid//
         public DataTable CargarDataGrid()
         {
             tabla = new DataTable();
 
-            ClsConexion conexionBD = new ClsConexion();
-            var conexion = conexionBD.AbrirConexion();
-            string sql = "select idCarrera AS Clave,nombreCarrera AS Carrera,descripcion AS Descripción from tblCarreras;";
-            consulta = new MySqlDataAdapter(sql, conexion);
-            consulta.Fill(tabla);
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "select idCarrera AS Clave,nombreCarrera AS Carrera,descripcion AS Descripción from tblCarreras;";
+                    using (consulta = new MySqlDataAdapter(sql, conexion))
+                    {
+                        consulta.Fill(tabla);
+                    }//Liberar la consulta
+                }//Liberar conexión
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error en la conexión" + ex.Message);
+            }
             return tabla;
         }
     }
 }
+

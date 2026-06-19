@@ -15,14 +15,14 @@ namespace prySistemaEscolar
             ApplicationConfiguration.Initialize();
             
              using(frmLogin login = new frmLogin())
-            {
+             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
                     Application.Run(new frmPrincipal());
                 }
              }
             
-            Application.Run(new frmCarreras());
+            Application.Run(new frmLogin());
         }
     }
 }
