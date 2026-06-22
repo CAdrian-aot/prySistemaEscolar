@@ -26,6 +26,38 @@ namespace prySistemaEscolar
             consulta = new MySqlDataAdapter(sql, conexion);
             consulta.Fill(tabla);
             return tabla;
+
+
         }
+
+        public DataTable Consultar()
+        {
+            tabla = new DataTable();
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+                using (var conexión = conexionBD.AbrirConexion.AbrirConexion())
+                {
+                    string sql = "SELECT idCarreras AS Clave, nombreCarrera AS carrara, descripción AS Descripción FROM tblCarreras WHERE nombreCarrera LIKE @Carrera;";
+
+                    using (var consultar = new MySqlComand(sql, conexion))
+                    {
+                        consultar.parameters.AddWhitValue("@carrera", "%" + nombreCarrera + "%");
+                        using (consultar = new MySqlDataAdapter (consultar))
+		                {
+                            consultar.Fill(tabla);
+		                }///liberar el adaptador
+
+                    }///liberar la consulta
+
+                }///libera la conexion
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error en la conexión" + ex.Message);
+            }
+            return tabla;
+        }
+
     }
 }
