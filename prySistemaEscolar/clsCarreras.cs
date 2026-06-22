@@ -29,7 +29,7 @@ namespace prySistemaEscolar
 
                 using (var conexion = conexionBD.AbrirConexion())
                 {
-                    string sql = "select idCarrera AS Clave,nombreCarrera AS Carrera,descripcion AS Descripción from tblCarreras;";
+                    string sql = "SELECT idCarrera AS Clave,nombreCarrera AS Carrera,descripcion AS Descripcion FROM tblcarreras;";
                     using (consulta = new MySqlDataAdapter(sql, conexion))
                     {
                         consulta.Fill(tabla);
@@ -38,7 +38,7 @@ namespace prySistemaEscolar
             }
             catch (Exception ex)
             {
-                throw new Exception("error en la conexión" + ex.Message);
+                throw new Exception("Error en la conexión" + ex.Message);
             }
             return tabla;
 
@@ -51,16 +51,16 @@ namespace prySistemaEscolar
             try
             {
                 ClsConexion conexionBD = new ClsConexion();
-                using (var conexión = conexionBD.AbrirConexion.AbrirConexion())
+                using (var conexion = conexionBD.AbrirConexion())
                 {
-                    string sql = "SELECT idCarreras AS Clave, nombreCarrera AS carrara, descripción AS Descripción FROM tblCarreras WHERE nombreCarrera LIKE @Carrera;";
+                    string sql = "SELECT idCarrera AS Clave, nombreCarrera AS Carrera, descripcion AS Descripcion FROM tblcarreras WHERE nombreCarrera LIKE @carrera;";
 
-                    using (var consultar = new MySqlComand(sql, conexion))
+                    using (var consultar = new MySqlCommand(sql, conexion))
                     {
-                        consultar.parameters.AddWhitValue("@carrera", "%" + nombreCarrera + "%");
-                        using (consultar = new MySqlDataAdapter (consultar))
+                        consultar.Parameters.AddWithValue("@carrera", "%" + nombreCarrera + "%");
+                        using (consulta = new MySqlDataAdapter (consultar))
 		                {
-                            consultar.Fill(tabla);
+                            consulta.Fill(tabla);
 		                }///liberar el adaptador
 
                     }///liberar la consulta

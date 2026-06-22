@@ -35,17 +35,16 @@ namespace prySistemaEscolar
         {
             carreras = new clsCarreras();
             dgvCarreras.DataSource = null;
-            dgvCarreras.AutoSizeColumnsMode = DataGridviewAutoSizeColumnsMode.Allcells;
+            dgvCarreras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
             {
-                carreras.NombreCarrera = txtNombreCarrera.Text;
-                dgvCarreras.DataSource = carreras.consultar();
+                carreras.NombreCarrera = txtNombreCarreras.Text;
+                dgvCarreras.DataSource = carreras.Consultar();
             }
             catch (Exception ex)
             {
-                throw new Exception("error en la conexión" + ex.Message);
+                MessageBox.Show(ex.Message);
             }
-            return tabla;
         }
     }
 }
