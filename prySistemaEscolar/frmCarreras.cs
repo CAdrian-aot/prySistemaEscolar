@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace prySistemaEscolar
 {
@@ -21,13 +22,30 @@ namespace prySistemaEscolar
             dgvCarreras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
             {
-                 dgvCarreras.DataSource = carreras.CargarDataGrid();
+                dgvCarreras.DataSource = carreras.CargarDataGrid();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
+        }
+
+        private void txtNombreCarreras_TextChanged(object sender, EventArgs e)
+        {
+            carreras = new clsCarreras();
+            dgvCarreras.DataSource = null;
+            dgvCarreras.AutoSizeColumnsMode = DataGridviewAutoSizeColumnsMode.Allcells;
+            try
+            {
+                carreras.NombreCarrera = txtNombreCarrera.Text;
+                dgvCarreras.DataSource = carreras.consultar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error en la conexión" + ex.Message);
+            }
+            return tabla;
         }
     }
 }
