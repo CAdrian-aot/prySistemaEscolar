@@ -97,6 +97,7 @@
             btnEliminar.Size = new Size(121, 68);
             btnEliminar.TabIndex = 3;
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnGuardar
             // 
