@@ -162,6 +162,7 @@
             dgvCarreras.RowTemplate.Height = 35;
             dgvCarreras.Size = new Size(941, 133);
             dgvCarreras.TabIndex = 3;
+            dgvCarreras.SelectionChanged += dgvCarreras_SelectionChanged;
             // 
             // frmCarreras
             // 
