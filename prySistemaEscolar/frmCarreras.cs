@@ -17,6 +17,10 @@ namespace prySistemaEscolar
         public frmCarreras()
         {
             InitializeComponent();
+            CargarGrid();
+        }
+        public void CargarGrid()
+        {
             carreras = new clsCarreras();
             dgvCarreras.DataSource = null;
             dgvCarreras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
