@@ -58,8 +58,52 @@ namespace prySistemaEscolar
             //Campo oculto que sirve de referencia y actualizar
             idCarrera = int.Parse(dgvCarreras.CurrentRow.Cells[0].Value.ToString());
             //Visuales
-            txtNombreCarrera.Text=dgvCarreras.CurrentRow.Cells[1].Value.ToString();
+            txtNombreCarrera.Text = dgvCarreras.CurrentRow.Cells[1].Value.ToString();
             txtDescripcion.Text = dgvCarreras.CurrentRow.Cells[2].Value.ToString();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int tipoOperacion = idCarrera == 0 ? 0 : 1;
+                carreras.IdCarrera = idCarrera;
+                carreras.NombreCarrera = txtNombreCarrera.Text;
+                carreras.Descripcion = txtDescripcion.Text;
+                string msg = "";
+                if (tipoOperacion != 0)
+                {
+                    var resp = MessageBox.Show("Confirmar que desea eliminar el dato seleccionado", "ALERTA!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (resp == DialogResult.Yes)
+                    {
+                        msg = carreras.GuardarActualizar(tipoOperacion);
+                        MessageBox.Show(msg);
+                    }
+                }
+                else
+                {
+                    msg = carreras.GuardarActualizar(tipoOperacion);
+                    MessageBox.Show(msg);
+                }
+                CargarGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            {
+                idCarrera = 0;
+                txtNombreCarrera.Clear();
+                txtDescripcion.Clear();
+                txtNombreCarrera.Focus();
+            }
+
         }
     }
 }

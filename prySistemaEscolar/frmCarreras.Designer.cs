@@ -86,6 +86,7 @@
             btnNuevo.Size = new Size(121, 68);
             btnNuevo.TabIndex = 4;
             btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // btnEliminar
             // 
@@ -106,6 +107,7 @@
             btnGuardar.Size = new Size(121, 68);
             btnGuardar.TabIndex = 2;
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // txtDescripcion
             // 
