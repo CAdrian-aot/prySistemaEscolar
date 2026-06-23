@@ -87,7 +87,7 @@ namespace prySistemaEscolar
             string msg = "";
             try
             {
-                cls_conexion conexionBD = new cls_conexion();
+                ClsConexion conexionBD = new ClsConexion();
                 using (var conexion = conexionBD.AbrirConexion())
                 {
                     switch (TipoOperacion)
@@ -131,6 +131,37 @@ namespace prySistemaEscolar
                             break;
                     }
                 }//Libera la conexion
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error" + ex.Message);
+            }
+            return msg;
+        }
+
+        public string Eliminar()
+        {
+            string msg = "";
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "DELETE FROM tblcarreras C WHERE C.idCarrera = @idCarrera;";
+                    using (comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@idCarrera", idCarrera);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            msg = "Datos eliminados correctamente";
+                        }
+                        else
+                        {
+                            msg = "Los datos no se pudieron eliminar";
+                        }
+                    }//liberar las conexiones
+                }
             }
             catch (Exception ex)
             {
