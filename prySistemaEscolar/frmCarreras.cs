@@ -14,6 +14,8 @@ namespace prySistemaEscolar
     public partial class frmCarreras : Form
     {
         clsCarreras carreras;
+        int idCarrera;
+
         public frmCarreras()
         {
             InitializeComponent();
@@ -45,6 +47,15 @@ namespace prySistemaEscolar
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dgvCarreras_SelectionChanged(object sender, EventArgs e)
+        {
+            //Campo oculto que sirve de referencia y actualizar
+            idCarrera = int.Parse(dgvCarreras.CurrentRow.Cells[0].Value.ToString());
+            //Visuales
+            txtNombreCarrera.Text=dgvCarreras.CurrentRow.Cells[1].Value.ToString();
+            txtDescripcion.Text = dgvCarreras.CurrentRow.Cells[2].Value.ToString();
         }
     }
 }
