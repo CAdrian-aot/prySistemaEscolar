@@ -111,6 +111,7 @@
             btnGuardar.Size = new Size(127, 59);
             btnGuardar.TabIndex = 5;
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // txtCorreo
             // 
