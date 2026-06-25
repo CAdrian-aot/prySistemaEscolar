@@ -52,5 +52,36 @@ namespace prySistemaEscolar
             }
             return tabla;
         }
+
+        public string Eliminar()
+        {
+            string msg = "";
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "DELETE FROM tbltutores C WHERE C.idTutor = @idTutor;";
+                    using (comando = new MySqlCommand(sql, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@idTutor", idTutor);
+                        int filasAfectadas = comando.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            msg = "Datos eliminados correctamente";
+                        }
+                        else
+                        {
+                            msg = "Los datos no se pudieron eliminar";
+                        }
+                    }//liberar las conexiones
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error" + ex.Message);
+            }
+            return msg;
+        }
     }
 }
