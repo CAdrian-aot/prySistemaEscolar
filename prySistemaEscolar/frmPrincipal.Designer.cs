@@ -132,6 +132,9 @@
             pcbTutores.SizeMode = PictureBoxSizeMode.StretchImage;
             pcbTutores.TabIndex = 0;
             pcbTutores.TabStop = false;
+            pcbTutores.Click += pcbTutores_Click;
+            pcbTutores.MouseDown += pcbGeneral_MouseDown;
+            pcbTutores.MouseUp += pcbGeneral_MouseUp;
             // 
             // frmPrincipal
             // 

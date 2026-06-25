@@ -36,10 +36,12 @@ namespace pry_LOGINNN
             pcbCarreras.Parent = pcbMenu;
             pcbDocentes.Parent = pcbMenu;
             pcbUsuarios.Parent = pcbMenu;
+            pcbTutores.Parent = pcbMenu;
             pcbAlumnos.BackColor = Color.Transparent;
             pcbCarreras.BackColor = Color.Transparent;
             pcbDocentes.BackColor = Color.Transparent;
             pcbUsuarios.BackColor = Color.Transparent;
+            pcbTutores.BackColor = Color.Transparent;
 
             // Vrerificando permisos
             pcbCarreras.Enabled = clsLogin.EsAdmin;
@@ -53,5 +55,12 @@ namespace pry_LOGINNN
             principal = new ClsPrincipal();
             principal.agregarAlcontenedor(new frmCarreras(), pnlContenedor);
         }
+
+        private void pcbTutores_Click(object sender, EventArgs e)
+        {
+            principal= new ClsPrincipal();
+            principal.agregarAlcontenedor(new frmTutores(), pnlContenedor);
+        }
+    
     }
 }

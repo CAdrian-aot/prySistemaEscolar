@@ -29,6 +29,7 @@ namespace prySistemaEscolar
         public string Direccion { get => direccion; set => direccion = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Correo { get => correo; set => correo = value; }
+        public int IdTutor { get => idTutor; set => idTutor = value; }
 
         //Metodo que se usa para cargar los datos en el DataGrid
         public DataTable CargarDataGrid()

@@ -35,13 +35,13 @@
             btnNuevo = new Button();
             btnEliminar = new Button();
             btnGuardar = new Button();
+            txtNombreTutor = new TextBox();
             txtCorreo = new TextBox();
             txtTelefono = new TextBox();
             txtDireccion = new TextBox();
             txtParentesco = new TextBox();
-            txtNombreTutor = new TextBox();
+            txtBuscarTutor = new TextBox();
             dgvTutores = new DataGridView();
-            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pcbLogo).BeginInit();
             pnlAgrupaControles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTutores).BeginInit();
@@ -72,11 +72,11 @@
             pnlAgrupaControles.Controls.Add(btnNuevo);
             pnlAgrupaControles.Controls.Add(btnEliminar);
             pnlAgrupaControles.Controls.Add(btnGuardar);
+            pnlAgrupaControles.Controls.Add(txtNombreTutor);
             pnlAgrupaControles.Controls.Add(txtCorreo);
             pnlAgrupaControles.Controls.Add(txtTelefono);
             pnlAgrupaControles.Controls.Add(txtDireccion);
             pnlAgrupaControles.Controls.Add(txtParentesco);
-            pnlAgrupaControles.Controls.Add(txtNombreTutor);
             pnlAgrupaControles.Location = new Point(225, 122);
             pnlAgrupaControles.Name = "pnlAgrupaControles";
             pnlAgrupaControles.Size = new Size(800, 322);
@@ -91,6 +91,7 @@
             btnNuevo.Size = new Size(127, 59);
             btnNuevo.TabIndex = 7;
             btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // btnEliminar
             // 
@@ -101,6 +102,7 @@
             btnEliminar.Size = new Size(127, 59);
             btnEliminar.TabIndex = 6;
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnGuardar
             // 
@@ -112,6 +114,15 @@
             btnGuardar.TabIndex = 5;
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
+            // 
+            // txtNombreTutor
+            // 
+            txtNombreTutor.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtNombreTutor.Location = new Point(77, 15);
+            txtNombreTutor.Name = "txtNombreTutor";
+            txtNombreTutor.PlaceholderText = "Escribir nombre del tutor";
+            txtNombreTutor.Size = new Size(627, 43);
+            txtNombreTutor.TabIndex = 0;
             // 
             // txtCorreo
             // 
@@ -149,33 +160,26 @@
             txtParentesco.Size = new Size(627, 43);
             txtParentesco.TabIndex = 1;
             // 
-            // txtNombreTutor
+            // txtBuscarTutor
             // 
-            txtNombreTutor.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtNombreTutor.Location = new Point(77, 15);
-            txtNombreTutor.Name = "txtNombreTutor";
-            txtNombreTutor.PlaceholderText = "Escribir el nombre del tutor";
-            txtNombreTutor.Size = new Size(627, 43);
-            txtNombreTutor.TabIndex = 0;
-            txtNombreTutor.TextChanged += txtNombreTutor_TextChanged;
+            txtBuscarTutor.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtBuscarTutor.Location = new Point(841, 444);
+            txtBuscarTutor.Name = "txtBuscarTutor";
+            txtBuscarTutor.PlaceholderText = "Buscar tutor";
+            txtBuscarTutor.Size = new Size(184, 43);
+            txtBuscarTutor.TabIndex = 4;
+            txtBuscarTutor.TextChanged += txtBuscarTutor_TextChanged;
             // 
             // dgvTutores
             // 
+            dgvTutores.AllowUserToAddRows = false;
             dgvTutores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTutores.Location = new Point(225, 493);
             dgvTutores.Name = "dgvTutores";
             dgvTutores.RowHeadersWidth = 51;
             dgvTutores.Size = new Size(800, 126);
             dgvTutores.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(754, 450);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Buscar tutor";
-            textBox1.Size = new Size(269, 43);
-            textBox1.TabIndex = 4;
+            dgvTutores.SelectionChanged += dgvTutores_SelectionChanged;
             // 
             // frmTutores
             // 
@@ -184,7 +188,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1223, 654);
-            Controls.Add(textBox1);
+            Controls.Add(txtBuscarTutor);
             Controls.Add(dgvTutores);
             Controls.Add(pnlAgrupaControles);
             Controls.Add(lblTitulo);
@@ -214,6 +218,6 @@
         private Button btnEliminar;
         private Button btnGuardar;
         private DataGridView dgvTutores;
-        private TextBox textBox1;
+        private TextBox txtBuscarTutor;
     }
 }
