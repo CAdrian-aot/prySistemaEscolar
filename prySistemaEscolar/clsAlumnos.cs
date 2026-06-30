@@ -62,9 +62,55 @@ namespace prySistemaEscolar
                 throw new Exception("Error en la conexión" + ex.Message);
             }
             return tabla;
-
-
         }
 
+        //Para obtener carreras
+        public DataTable ObtenerCarreras()
+        {
+            tabla = new DataTable();
+
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "SELECT idCarrera, nombreCarrera FROM tblcarreras";
+                    using (consulta = new MySqlDataAdapter(sql, conexion))
+                    {
+                        consulta.Fill(tabla);
+                    }//Liberar la consulta
+                }//Liberar conexión
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener carreras: " + ex.Message);
+            }
+            return tabla;
+        }
+
+        //Para obtener tutores
+        public DataTable ObtenerTutores() 
+        {
+            tabla = new DataTable();
+
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "SELECT idTutor, nombreTutor FROM tbltutores";
+                    using (consulta = new MySqlDataAdapter(sql, conexion))
+                    {
+                        consulta.Fill(tabla);
+                    }//Liberar la consulta
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener tutores: " + ex.Message);
+            }
+            return tabla;
+        }
     }
 }
