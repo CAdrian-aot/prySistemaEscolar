@@ -97,55 +97,13 @@ namespace prySistemaEscolar
 
         }
 
-        private void cmbTutor_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnNuevo_Click(object sender, EventArgs e)
         {
-
+            idMatricula = 0;
+            idUsuario = 0;
+            alumnos.LimpiarPanel(pnlAlumnos);
+            usuario.LimpiarPanel(pnlUsuarios);
+            txtMatricula.Focus();
         }
-
-        private void dgvAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void cmbPerfil_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvAlumnos_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //esto es para poder saber si es nuevo o vamos a actualizar
-                idMatricula = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
-
-                idUsuario = int.Parse(dgvAlumnos.CurrentRow.Cells["idUsuario"].Value.ToString());
-
-                //Esto es para la tabla de alumnos
-                txtMatricula.Text = idMatricula.ToString();
-                txtNombreAlumno.Text = dgvAlumnos.CurrentRow.Cells["Nombre"].Value.ToString();
-                txtAPaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Paterno"].Value.ToString();
-                txtAMaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Materno"].Value.ToString();
-                txtDireccion.Text = dgvAlumnos.CurrentRow.Cells["direccion"].Value.ToString();
-                txtTelefono.Text = dgvAlumnos.CurrentRow.Cells["telefono"].Value.ToString();
-                txtCorreo.Text = dgvAlumnos.CurrentRow.Cells["correo"].Value.ToString();
-                txtPromedioBachiller.Text = dgvAlumnos.CurrentRow.Cells["promedioBachiller"].Value.ToString();
-
-                //esto es para los usuarios
-                txtUsuario.Text = dgvAlumnos.CurrentRow.Cells["Usuario"].Value.ToString();
-                txtPassword.Text = dgvAlumnos.CurrentRow.Cells["vchpassword"].Value.ToString();
-                cmbPerfil.Text = dgvAlumnos.CurrentRow.Cells["vchperfil"].Value.ToString();
-
-                cmbCarrera.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idCarrera"].Value.ToString());
-                cmbTutor.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idTutor"].Value.ToString());
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show("Error al mapear los datos selesccionados:" + ex.Message);
-            
-            }
-
-
-        }   
     }
 }

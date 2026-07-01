@@ -239,6 +239,7 @@
             btnNuevo.Size = new Size(121, 68);
             btnNuevo.TabIndex = 16;
             btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // btnEliminar
             // 
