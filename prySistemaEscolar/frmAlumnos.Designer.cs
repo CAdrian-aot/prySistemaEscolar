@@ -141,6 +141,7 @@
             cmbTutor.Name = "cmbTutor";
             cmbTutor.Size = new Size(217, 39);
             cmbTutor.TabIndex = 8;
+            cmbTutor.SelectedIndexChanged += cmbTutor_SelectedIndexChanged;
             // 
             // cmbCarrera
             // 
@@ -189,6 +190,7 @@
             cmbPerfil.Name = "cmbPerfil";
             cmbPerfil.Size = new Size(336, 39);
             cmbPerfil.TabIndex = 10;
+            cmbPerfil.SelectedIndexChanged += cmbPerfil_SelectedIndexChanged;
             // 
             // txtPassword
             // 
@@ -296,6 +298,8 @@
             dgvAlumnos.RowTemplate.Height = 35;
             dgvAlumnos.Size = new Size(1071, 133);
             dgvAlumnos.TabIndex = 17;
+            dgvAlumnos.CellContentClick += dgvAlumnos_CellContentClick;
+            dgvAlumnos.SelectionChanged += dgvAlumnos_SelectionChanged;
             // 
             // label3
             // 

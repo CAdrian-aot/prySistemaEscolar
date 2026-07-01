@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,10 @@ namespace prySistemaEscolar
 {
     public partial class frmAlumnos : Form
     {
+        clsAlumnos alumnos;
+
+        int idMatricula;
+        int idUsuario;
         public frmAlumnos()
         {
             InitializeComponent();
