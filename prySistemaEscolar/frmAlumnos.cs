@@ -15,8 +15,23 @@ namespace prySistemaEscolar
         public frmAlumnos()
         {
             InitializeComponent();
-            CargarGrid();
+            cargarGrid();
             cargarCombos();
+        }
+
+        public void cargarGrid()
+        {
+            clsAlumnos alumnos = new clsAlumnos();
+            dgvAlumnos.DataSource = null;
+            dgvAlumnos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            try
+            {
+                dgvAlumnos.DataSource = alumnos.CargarDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void cargarCombos()
@@ -30,36 +45,31 @@ namespace prySistemaEscolar
                 DataRow filaPCarrera = dtCarreras.NewRow();
                 filaPCarrera["idcarrera"] = 0;
                 filaPCarrera["nombreCarrera"] = "-- Selecciona una Carrera --";
-                filaPCarrera.Rows.InsertAt(filaPCarrera, 0);
+                dtCarreras.Rows.InsertAt(filaPCarrera, 0);
 
                 //Enlazados los datos al comboBox visual
                 cmbCarrera.DataSource = dtCarreras;
-                cmbCarrera.DisplayMenber = "nombreCarrera";// El texto visible
-                cmbCarrera.ValueMenber = "idcarrera";      //La llave primaria real
+                cmbCarrera.DisplayMember = "nombreCarrera";// El texto visible
+                cmbCarrera.ValueMember = "idcarrera";      //La llave primaria real
                 cmbCarrera.SelectedIndex = 0;          // Forzar a que muestre el placeholder
 
                 DataTable dtTutores = alumnos.ObtenerTutores();
                 // creamos la fila del planceholder para la carrera
                 DataRow filaPTutores = dtTutores.NewRow();
-                filaPTutores["idTutores"] = 0;
-                filaPTutores["nombreTutores"] = "-- Selecciona un Tutoro --";
-                filaPTutores.Rows.InsertAt(filaPTutores, 0);
+                filaPTutores["idTutor"] = 0;
+                filaPTutores["nombreTutor"] = "-- Selecciona un Tutoro --";
+                dtTutores.Rows.InsertAt(filaPTutores, 0);
 
                 //Enlazados los datos al comboBox visual
                  cmbTutor.DataSource = dtTutores;
-                 cmbTutor.DisplayMenber = "nombreTutores";// El texto visible
-                 cmbTutor.ValueMenber = "idTutores";      //La llave primaria real
+                 cmbTutor.DisplayMember = "nombreTutor";// El texto visible
+                 cmbTutor.ValueMember = "idTutor";      //La llave primaria real
                  cmbTutor.SelectedIndex = 0;          // Forzar a que muestre el placeholder
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al rellenar los catálogos en los menús desplegables:" + ex.Message);
             }
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 

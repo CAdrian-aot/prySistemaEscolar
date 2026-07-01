@@ -22,7 +22,7 @@ namespace prySistemaEscolar
                 }
              }
             
-            Application.Run(new frmLogin());
+            //Application.Run(new frmAlumnos());
         }
     }
 }

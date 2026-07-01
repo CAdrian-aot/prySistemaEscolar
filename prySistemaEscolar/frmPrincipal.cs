@@ -58,9 +58,14 @@ namespace pry_LOGINNN
 
         private void pcbTutores_Click(object sender, EventArgs e)
         {
-            principal= new ClsPrincipal();
+            principal = new ClsPrincipal();
             principal.agregarAlcontenedor(new frmTutores(), pnlContenedor);
         }
-    
+
+        private void pcbAlumnos_Click(object sender, EventArgs e)
+        {
+            principal = new ClsPrincipal();
+            principal.agregarAlcontenedor(new frmAlumnos(), pnlContenedor);
+        }
     }
 }

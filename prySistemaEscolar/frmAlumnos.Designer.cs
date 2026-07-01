@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlumnos));
             txtMatricula = new TextBox();
             tctNombre = new TextBox();
@@ -52,12 +52,12 @@
             btnEliminar = new Button();
             btnGuardar = new Button();
             txtNombreAlumno = new TextBox();
-            dgvCarreras = new DataGridView();
+            dgvAlumnos = new DataGridView();
             label3 = new Label();
             pictureBox1 = new PictureBox();
             pnlAlumnos.SuspendLayout();
             pnlUsuarios.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCarreras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAlumnos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -141,7 +141,6 @@
             cmbTutor.Name = "cmbTutor";
             cmbTutor.Size = new Size(217, 39);
             cmbTutor.TabIndex = 8;
-            cmbTutor.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // cmbCarrera
             // 
@@ -269,33 +268,33 @@
             txtNombreAlumno.TabIndex = 18;
             txtNombreAlumno.TextChanged += txtNombreCarreras_TextChanged;
             // 
-            // dgvCarreras
+            // dgvAlumnos
             // 
-            dgvCarreras.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(255, 224, 192);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.Teal;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvCarreras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dgvCarreras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.Teal;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(192, 192, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvCarreras.DefaultCellStyle = dataGridViewCellStyle6;
-            dgvCarreras.EnableHeadersVisualStyles = false;
-            dgvCarreras.Location = new Point(207, 496);
-            dgvCarreras.Name = "dgvCarreras";
-            dgvCarreras.RowHeadersWidth = 51;
-            dgvCarreras.RowTemplate.Height = 35;
-            dgvCarreras.Size = new Size(941, 133);
-            dgvCarreras.TabIndex = 17;
+            dgvAlumnos.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 224, 192);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Teal;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvAlumnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvAlumnos.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvAlumnos.EnableHeadersVisualStyles = false;
+            dgvAlumnos.Location = new Point(105, 496);
+            dgvAlumnos.Name = "dgvAlumnos";
+            dgvAlumnos.RowHeadersWidth = 51;
+            dgvAlumnos.RowTemplate.Height = 35;
+            dgvAlumnos.Size = new Size(1071, 133);
+            dgvAlumnos.TabIndex = 17;
             // 
             // label3
             // 
@@ -324,7 +323,7 @@
             ClientSize = new Size(1223, 654);
             Controls.Add(label3);
             Controls.Add(txtNombreAlumno);
-            Controls.Add(dgvCarreras);
+            Controls.Add(dgvAlumnos);
             Controls.Add(pictureBox1);
             Controls.Add(btnEliminar);
             Controls.Add(btnGuardar);
@@ -339,7 +338,7 @@
             pnlAlumnos.PerformLayout();
             pnlUsuarios.ResumeLayout(false);
             pnlUsuarios.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCarreras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAlumnos).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -368,7 +367,7 @@
         private Button btnEliminar;
         private Button btnGuardar;
         private TextBox txtNombreAlumno;
-        private DataGridView dgvCarreras;
+        private DataGridView dgvAlumnos;
         private Label label3;
         private PictureBox pictureBox1;
     }
