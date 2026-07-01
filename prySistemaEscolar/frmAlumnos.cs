@@ -27,6 +27,20 @@ namespace prySistemaEscolar
             try
             {
                 dgvAlumnos.DataSource = alumnos.CargarDataGrid();
+                dgvAlumnos.Columns["Matricula"].Visible = true;
+                dgvAlumnos.Columns["Nombre"].Visible = true;
+                dgvAlumnos.Columns["A. Paterno"].Visible = true;
+                dgvAlumnos.Columns["A. Materno"].Visible = true;
+                dgvAlumnos.Columns["Carrera"].Visible = true;
+                dgvAlumnos.Columns["Tutor"].Visible = true;
+                dgvAlumnos.Columns["Usuario"].Visible = true;
+                dgvAlumnos.Columns["direccion"].Visible = true;
+                dgvAlumnos.Columns["telefono"].Visible = true;
+                dgvAlumnos.Columns["correo"].Visible = true;
+                dgvAlumnos.Columns["promedioBachillerato"].Visible = true;
+                dgvAlumnos.Columns["idTutor"].Visible = false;
+                dgvAlumnos.Columns["idCarrera"].Visible = false;
+                dgvAlumnos.Columns["idUsuario"].Visible = false;
             }
             catch (Exception ex)
             {
