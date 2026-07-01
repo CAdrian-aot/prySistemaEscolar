@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,10 @@ namespace prySistemaEscolar
 {
     public partial class frmAlumnos : Form
     {
+        clsAlumnos alumnos;
+
+        int idMatricula;
+        int idUsuario;
         public frmAlumnos()
         {
             InitializeComponent();
@@ -75,10 +80,10 @@ namespace prySistemaEscolar
                 dtTutores.Rows.InsertAt(filaPTutores, 0);
 
                 //Enlazados los datos al comboBox visual
-                 cmbTutor.DataSource = dtTutores;
-                 cmbTutor.DisplayMember = "nombreTutor";// El texto visible
-                 cmbTutor.ValueMember = "idTutor";      //La llave primaria real
-                 cmbTutor.SelectedIndex = 0;          // Forzar a que muestre el placeholder
+                cmbTutor.DataSource = dtTutores;
+                cmbTutor.DisplayMember = "nombreTutor";// El texto visible
+                cmbTutor.ValueMember = "idTutor";      //La llave primaria real
+                cmbTutor.SelectedIndex = 0;          // Forzar a que muestre el placeholder
             }
             catch (Exception ex)
             {
@@ -91,5 +96,56 @@ namespace prySistemaEscolar
         {
 
         }
+
+        private void cmbTutor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cmbPerfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvAlumnos_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //esto es para poder saber si es nuevo o vamos a actualizar
+                idMatricula = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
+
+                idUsuario = int.Parse(dgvAlumnos.CurrentRow.Cells["idUsuario"].Value.ToString());
+
+                //Esto es para la tabla de alumnos
+                txtMatricula.Text = idMatricula.ToString();
+                txtNombreAlumno.Text = dgvAlumnos.CurrentRow.Cells["Nombre"].Value.ToString();
+                txtAPaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Paterno"].Value.ToString();
+                txtAMaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Materno"].Value.ToString();
+                txtDireccion.Text = dgvAlumnos.CurrentRow.Cells["direccion"].Value.ToString();
+                txtTelefono.Text = dgvAlumnos.CurrentRow.Cells["telefono"].Value.ToString();
+                txtCorreo.Text = dgvAlumnos.CurrentRow.Cells["correo"].Value.ToString();
+                txtPromedioBachiller.Text = dgvAlumnos.CurrentRow.Cells["promedioBachiller"].Value.ToString();
+
+                //esto es para los usuarios
+                txtUsuario.Text = dgvAlumnos.CurrentRow.Cells["Usuario"].Value.ToString();
+                txtPassword.Text = dgvAlumnos.CurrentRow.Cells["vchpassword"].Value.ToString();
+                cmbPerfil.Text = dgvAlumnos.CurrentRow.Cells["vchperfil"].Value.ToString();
+
+                cmbCarrera.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idCarrera"].Value.ToString());
+                cmbTutor.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idTutor"].Value.ToString());
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Error al mapear los datos selesccionados:" + ex.Message);
+            
+            }
+
+
+        }   
     }
 }
