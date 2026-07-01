@@ -75,10 +75,10 @@ namespace prySistemaEscolar
                 dtTutores.Rows.InsertAt(filaPTutores, 0);
 
                 //Enlazados los datos al comboBox visual
-                 cmbTutor.DataSource = dtTutores;
-                 cmbTutor.DisplayMember = "nombreTutor";// El texto visible
-                 cmbTutor.ValueMember = "idTutor";      //La llave primaria real
-                 cmbTutor.SelectedIndex = 0;          // Forzar a que muestre el placeholder
+                cmbTutor.DataSource = dtTutores;
+                cmbTutor.DisplayMember = "nombreTutor";// El texto visible
+                cmbTutor.ValueMember = "idTutor";      //La llave primaria real
+                cmbTutor.SelectedIndex = 0;          // Forzar a que muestre el placeholder
             }
             catch (Exception ex)
             {
@@ -90,6 +90,15 @@ namespace prySistemaEscolar
         private void txtNombreCarreras_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            idMatricula = 0;
+            idUsuario = 0;
+            alumnos.LimpiarPanel(pnlAlumnos);
+            usuario.LimpiarPanel(pnlUsuarios);
+            txtMatricula.Focus();
         }
     }
 }
