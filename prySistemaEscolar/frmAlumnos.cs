@@ -32,12 +32,6 @@ namespace prySistemaEscolar
             try
             {
                 dgvAlumnos.DataSource = alumnos.CargarDataGrid();
-                dgvAlumnos.Columns["Matricula"].Visible = true;
-                dgvAlumnos.Columns["Nombre"].Visible = true;
-                dgvAlumnos.Columns["A. Paterno"].Visible = true;
-                dgvAlumnos.Columns["A. Materno"].Visible = true;
-                dgvAlumnos.Columns["Carrera"].Visible = true;
-                dgvAlumnos.Columns["Tutor"].Visible = true;
                 dgvAlumnos.Columns["Usuario"].Visible = true;
                 dgvAlumnos.Columns["direccion"].Visible = true;
                 dgvAlumnos.Columns["telefono"].Visible = true;
@@ -92,22 +86,19 @@ namespace prySistemaEscolar
 
         }
 
-        private void txtNombreCarreras_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            alumnos = new clsAlumnos();
+
             idMatricula = 0;
             idUsuario = 0;
             alumnos.LimpiarPanel(pnlAlumnos);
-            usuario.LimpiarPanel(pnlUsuarios);
+            alumnos.LimpiarPanel(pnlUsuarios);
             txtMatricula.Focus();
         }
         private void txtNombreAlumno_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMatricula.Text))
+            if (string.IsNullOrEmpty(txtBuscarMatricula.Text))
             {
                 cargarGrid();
                 return;
@@ -117,7 +108,7 @@ namespace prySistemaEscolar
             dgvAlumnos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
             {
-                alumnos.Matricula = int.Parse(txtMatricula.Text);
+                alumnos.Matricula = int.Parse(txtBuscarMatricula.Text);
                 dgvAlumnos.DataSource = alumnos.Consultar();
             }
             catch (Exception ex)
@@ -126,7 +117,37 @@ namespace prySistemaEscolar
             }
 
         }
+
+        private void dgvAlumnos_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Para saber si es nuevo o se va a actualizar
+                idMatricula = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
+                idUsuario = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
+
+                //Para la tabla de alumnos
+                txtMatricula.Text = idMatricula.ToString();
+                txtNombre.Text = dgvAlumnos.CurrentRow.Cells["Nombre"].Value.ToString();
+                txtAPaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Paterno"].Value.ToString();
+                txtAMaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Materno"].Value.ToString();
+                txtDireccion.Text = dgvAlumnos.CurrentRow.Cells["direccion"].Value.ToString();
+                txtTelefono.Text = dgvAlumnos.CurrentRow.Cells["telefono"].Value.ToString();
+                txtCorreo.Text = dgvAlumnos.CurrentRow.Cells["correo"].Value.ToString();
+
+                //Para la tabla de usuarios
+                txtUsuario.Text = dgvAlumnos.CurrentRow.Cells["Usuario"].Value.ToString();
+                txtPassword.Text = dgvAlumnos.CurrentRow.Cells["vchpassword"].Value.ToString();
+                cmbPerfil.Text = dgvAlumnos.CurrentRow.Cells["vchperfil"].Value.ToString();
+
+                //Usar selected value para apuntar al dato preciso de cada registro
+                cmbCarrera.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idCarrera"].Value.ToString());
+                cmbTutor.SelectedValue = int.Parse(dgvAlumnos.CurrentRow.Cells["idTutor"].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al mapear los datos seleccionados: " + ex.Message);
+            }
+        }
     }
 }
-
-  

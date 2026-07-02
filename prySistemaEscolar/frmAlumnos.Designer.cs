@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlumnos));
             txtMatricula = new TextBox();
-            tctNombre = new TextBox();
+            txtNombre = new TextBox();
             txtAPaterno = new TextBox();
             txtAMaterno = new TextBox();
             txtDireccion = new TextBox();
@@ -51,7 +51,7 @@
             btnNuevo = new Button();
             btnEliminar = new Button();
             btnGuardar = new Button();
-            txtNombreAlumno = new TextBox();
+            txtBuscarMatricula = new TextBox();
             dgvAlumnos = new DataGridView();
             label3 = new Label();
             pictureBox1 = new PictureBox();
@@ -70,14 +70,14 @@
             txtMatricula.Size = new Size(217, 38);
             txtMatricula.TabIndex = 0;
             // 
-            // tctNombre
+            // txtNombre
             // 
-            tctNombre.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            tctNombre.Location = new Point(22, 63);
-            tctNombre.Name = "tctNombre";
-            tctNombre.PlaceholderText = "Nombre";
-            tctNombre.Size = new Size(217, 38);
-            tctNombre.TabIndex = 1;
+            txtNombre.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            txtNombre.Location = new Point(22, 63);
+            txtNombre.Name = "txtNombre";
+            txtNombre.PlaceholderText = "Nombre";
+            txtNombre.Size = new Size(217, 38);
+            txtNombre.TabIndex = 1;
             // 
             // txtAPaterno
             // 
@@ -141,7 +141,6 @@
             cmbTutor.Name = "cmbTutor";
             cmbTutor.Size = new Size(217, 39);
             cmbTutor.TabIndex = 8;
-            cmbTutor.SelectedIndexChanged += cmbTutor_SelectedIndexChanged;
             // 
             // cmbCarrera
             // 
@@ -163,7 +162,7 @@
             pnlAlumnos.Controls.Add(txtDireccion);
             pnlAlumnos.Controls.Add(txtAMaterno);
             pnlAlumnos.Controls.Add(txtAPaterno);
-            pnlAlumnos.Controls.Add(tctNombre);
+            pnlAlumnos.Controls.Add(txtNombre);
             pnlAlumnos.Controls.Add(txtMatricula);
             pnlAlumnos.Location = new Point(105, 131);
             pnlAlumnos.Name = "pnlAlumnos";
@@ -190,7 +189,6 @@
             cmbPerfil.Name = "cmbPerfil";
             cmbPerfil.Size = new Size(336, 39);
             cmbPerfil.TabIndex = 10;
-            cmbPerfil.SelectedIndexChanged += cmbPerfil_SelectedIndexChanged;
             // 
             // txtPassword
             // 
@@ -261,36 +259,36 @@
             btnGuardar.TabIndex = 14;
             btnGuardar.UseVisualStyleBackColor = true;
             // 
-            // txtNombreAlumno
+            // txtBuscarMatricula
             // 
-            txtNombreAlumno.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtNombreAlumno.Location = new Point(909, 447);
-            txtNombreAlumno.Name = "txtNombreAlumno";
-            txtNombreAlumno.PlaceholderText = "Buscar Alumno";
-            txtNombreAlumno.Size = new Size(239, 43);
-            txtNombreAlumno.TabIndex = 18;
-            txtNombreAlumno.TextChanged += txtNombreCarreras_TextChanged;
+            txtBuscarMatricula.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtBuscarMatricula.Location = new Point(909, 447);
+            txtBuscarMatricula.Name = "txtBuscarMatricula";
+            txtBuscarMatricula.PlaceholderText = "Buscar Alumno";
+            txtBuscarMatricula.Size = new Size(239, 43);
+            txtBuscarMatricula.TabIndex = 18;
+            txtBuscarMatricula.TextChanged += txtNombreAlumno_TextChanged;
             // 
             // dgvAlumnos
             // 
             dgvAlumnos.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(255, 224, 192);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Teal;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvAlumnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 224, 192);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Teal;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvAlumnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Teal;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(192, 192, 255);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvAlumnos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Teal;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvAlumnos.DefaultCellStyle = dataGridViewCellStyle4;
             dgvAlumnos.EnableHeadersVisualStyles = false;
             dgvAlumnos.Location = new Point(105, 496);
             dgvAlumnos.Name = "dgvAlumnos";
@@ -298,7 +296,6 @@
             dgvAlumnos.RowTemplate.Height = 35;
             dgvAlumnos.Size = new Size(1071, 133);
             dgvAlumnos.TabIndex = 17;
-            dgvAlumnos.CellContentClick += dgvAlumnos_CellContentClick;
             dgvAlumnos.SelectionChanged += dgvAlumnos_SelectionChanged;
             // 
             // label3
@@ -327,7 +324,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1223, 654);
             Controls.Add(label3);
-            Controls.Add(txtNombreAlumno);
+            Controls.Add(txtBuscarMatricula);
             Controls.Add(dgvAlumnos);
             Controls.Add(pictureBox1);
             Controls.Add(btnEliminar);
@@ -352,7 +349,7 @@
         #endregion
 
         private TextBox txtMatricula;
-        private TextBox tctNombre;
+        private TextBox txtNombre;
         private TextBox txtAPaterno;
         private TextBox txtAMaterno;
         private TextBox txtDireccion;
@@ -371,7 +368,7 @@
         private Button btnNuevo;
         private Button btnEliminar;
         private Button btnGuardar;
-        private TextBox txtNombreAlumno;
+        private TextBox txtBuscarMatricula;
         private DataGridView dgvAlumnos;
         private Label label3;
         private PictureBox pictureBox1;

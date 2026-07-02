@@ -50,20 +50,21 @@ namespace prySistemaEscolar
 
                 using (var conexion = conexionBD.AbrirConexion())
                 {
-                    string sql = "SELECT A.matricula AS Matricula," +
-                                 "A.nombreAlumno AS Nombre," +
+                    string sql = "SELECT A.matricula AS Matricula, " +
+                                 "A.nombreAlumno AS Nombre, " +
                                  "A.apellidoP AS 'A. Paterno', " +
-                                 "A.apellidoM AS 'A. Materno'," +
-                                 "C.nombreCarrera AS Carrera," +
-                                 "T.nombreTutor AS Tutor," +
+                                 "A.apellidoM AS 'A. Materno', " +
+                                 "C.nombreCarrera AS Carrera, " +
+                                 "T.nombreTutor AS Tutor, " +
                                  "U.vchnombreUsuario AS Usuario, " +
-                                 "U.vchpassword, " + // <-- AQUI SE AGREGA EL PASSWORD
-                                 "U.vchperfil, " +   // <-- AQUI SE AGREGA EL PERFIL
-                                 "A.direccion, A.telefono, A.correo, A.promedioBachillerato, A.idTutor, A.idCarrera, A.idUsuario" +
-                                 "FROM tblalumnos A" +
-                                 "INNER JOIN tblcarreras C ON A.idCarrera = C.idCarrera" +
-                                 "INNER JOIN tbltutores T ON A.idTutor = T.idTutor" +
-                                 "INNER JOIN tblusuarios U ON A.idUsuario = U.intidUsuario WHERE A.matricula LIKE @matricula;";
+                                 "U.vchpassword, " + //Aqui se agrega el password
+                                 "U.vchperfil, " + //Aqui se agrega el perfil
+                                 "A.direccion, A.telefono, A.correo, A.promedioBachillerato, " +
+                                 "A.idTutor, A.idCarrera, A.idUsuario " +
+                                 "FROM tblalumnos A " +
+                                 "INNER JOIN tblcarreras C ON A.idCarrera = C.idCarrera " +
+                                 "INNER JOIN tbltutores T ON A.idTutor = T.idTutor " +
+                                 "INNER JOIN tblusuarios U ON A.idUsuario = U.intidUsuario;";
                     using (var consulta = new MySqlDataAdapter(sql, conexion))
                     {
                         consulta.SelectCommand.Parameters.AddWithValue("@matricula", "%" + matricula + "%");
@@ -123,6 +124,64 @@ namespace prySistemaEscolar
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener tutores: " + ex.Message);
+            }
+            return tabla;
+        }
+
+        //Meotodo para limpiar
+        public void LimpiarPanel(Panel panelDestino)
+        {
+            foreach (Control control in panelDestino.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+                else if (control is ComboBox)
+                {
+                    ((ComboBox)control).SelectedIndex = 0; 
+                }
+            }
+        }
+
+        //Metodo para buscar
+        public DataTable Consultar()
+        {
+            tabla = new DataTable();
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "SELECT A.matricula AS Matricula, " +
+                                 "A.nombreAlumno AS Nombre, " +
+                                 "A.apellidoP AS 'A. Paterno', " +
+                                 "A.apellidoM AS 'A. Materno', " +
+                                 "C.nombreCarrera AS Carrera, " +
+                                 "T.nombreTutor AS Tutor, " +
+                                 "U.vchnombreUsuario AS Usuario, " +
+                                 "U.vchpassword, " + //Aqui se agrega el password
+                                 "U.vchperfil, " + //Aqui se agrega el perfil
+                                 "A.direccion, A.telefono, A.correo, A.promedioBachillerato, " +
+                                 "A.idTutor, A.idCarrera, A.idUsuario " +
+                                 "FROM tblalumnos A " +
+                                 "INNER JOIN tblcarreras C ON A.idCarrera = C.idCarrera " +
+                                 "INNER JOIN tbltutores T ON A.idTutor = T.idTutor " +
+                                 "INNER JOIN tblusuarios U ON A.idUsuario = U.intidUsuario " +
+                                 "WHERE A.Matricula LIKE @matricula;";
+                    using (var consultar = new MySqlCommand(sql, conexion))
+                    {
+                        consultar.Parameters.AddWithValue("@matricula", "%" + matricula + "%");
+                        using (consulta = new MySqlDataAdapter(consultar))
+                        {
+                            consulta.Fill(tabla);
+                        }//Liberar el adaptador
+                    }//Liberar la consulta
+                }//Liberar conexión
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la conexión" + ex.Message);
             }
             return tabla;
         }
