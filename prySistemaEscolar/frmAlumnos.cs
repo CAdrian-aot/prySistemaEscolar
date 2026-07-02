@@ -32,11 +32,13 @@ namespace prySistemaEscolar
             try
             {
                 dgvAlumnos.DataSource = alumnos.CargarDataGrid();
-                dgvAlumnos.Columns["Usuario"].Visible = true;
-                dgvAlumnos.Columns["direccion"].Visible = true;
-                dgvAlumnos.Columns["telefono"].Visible = true;
-                dgvAlumnos.Columns["correo"].Visible = true;
-                dgvAlumnos.Columns["promedioBachillerato"].Visible = true;
+                dgvAlumnos.Columns["Usuario"].Visible = false;
+                dgvAlumnos.Columns["direccion"].Visible = false;
+                dgvAlumnos.Columns["telefono"].Visible = false;
+                dgvAlumnos.Columns["correo"].Visible = false;
+                dgvAlumnos.Columns["promedioBachillerato"].Visible = false;
+                dgvAlumnos.Columns["vchpassword"].Visible = false;
+                dgvAlumnos.Columns["vchperfil"].Visible = false;
                 dgvAlumnos.Columns["idTutor"].Visible = false;
                 dgvAlumnos.Columns["idCarrera"].Visible = false;
                 dgvAlumnos.Columns["idUsuario"].Visible = false;
@@ -132,6 +134,7 @@ namespace prySistemaEscolar
                 txtAPaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Paterno"].Value.ToString();
                 txtAMaterno.Text = dgvAlumnos.CurrentRow.Cells["A. Materno"].Value.ToString();
                 txtDireccion.Text = dgvAlumnos.CurrentRow.Cells["direccion"].Value.ToString();
+                txtPromedioBachiller.Text=dgvAlumnos.CurrentRow.Cells["promedioBachillerato"].Value.ToString();
                 txtTelefono.Text = dgvAlumnos.CurrentRow.Cells["telefono"].Value.ToString();
                 txtCorreo.Text = dgvAlumnos.CurrentRow.Cells["correo"].Value.ToString();
 
