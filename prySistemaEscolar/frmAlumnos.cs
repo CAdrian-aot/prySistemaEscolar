@@ -205,5 +205,31 @@ namespace prySistemaEscolar
             }
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var respuesta = MessageBox.Show($"¿Estas completamente seguro de eliminar permanentemente al alumno con Matricula: {idMatricula}?\nEsta accion borrara tambien su cuenta de usuario.", "¡ADVERTENCIA!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                try
+                {
+                    alumnos = new clsAlumnos();
+                    alumnos.Matricula = idMatricula;
+                    alumnos.Idusuario = idUsuario;
+
+                    string resultado = alumnos.Eliminar();
+
+                    MessageBox.Show(resultado, "Registro Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    cargarGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocurrio un error al intentar eliminar el registro: " + ex.Message, "Error Operacional", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
     }
 }
