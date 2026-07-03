@@ -153,31 +153,56 @@ namespace prySistemaEscolar
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show($"¿Estas completamente seguro de eliminar permanentemente al alumno con Matricula: {idMatricula}?\nEsta accion borrara tambien su cuenta de usuario.", "¡ADVERTENCIA!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-
-            if (respuesta == DialogResult.Yes)
+            try
             {
-                try
+
+                //Determinamos el tipo de operacion 
+                int tipoOperacion = idMatricula == 0 ? 0 : 1;
+
+                alumnos = new clsAlumnos();
+                // 1. Llenamos las propiedades del bloque Alumno
+                alumnos.Matricula = int.Parse(txtMatricula.Text);
+                alumnos.NombreAlumno = txtNombre.Text;
+                alumnos.ApellidoP = txtAPaterno.Text;
+                alumnos.ApellidoM = txtAMaterno.Text;
+                alumnos.Direccion = txtDireccion.Text;
+                alumnos.Telefono = txtTelefono.Text;
+                alumnos.Correo = txtCorreo.Text;
+                alumnos.PromedioBachillerato = decimal.Parse(txtPromedioBachiller.Text);
+                alumnos.IdCarrera = Convert.ToInt32(cmbCarrera.SelectedValue);
+                alumnos.IdTutor = Convert.ToInt32(cmbTutor.SelectedValue);
+
+                // 2. Llenamos las propiedades del bloque Usuario
+                alumnos.IdUsuario = idUsuario; //Sera 0 si es nuevo, o el ID real si es update
+                alumnos.NombreUsuario = txtUsuario.Text;
+                alumnos.Password = txtPassword.Text;
+                alumnos.Perfil = cmbPerfil.Text;
+
+                string msg = "";
+
+                //Si es una modificacion (tipoOperacion = 1 ), pedimos confirmacion como en carreras
+                if (tipoOperacion == 1)
                 {
-                    alumnos = new clsAlumnos();
-                    alumnos.Matricula = idMatricula;
-                    alumnos.Idusuario = idUsuario;
-
-                    string resultado = alumnos.Eliminar();
-
-                    MessageBox.Show(resultado, "Registro Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    cargarGrid();
+                    var resp = MessageBox.Show("¿Confirmar que deseas actualizar los datos de este alumno?", "ALERTA ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (resp == DialogResult.Yes)
+                    {
+                        msg = alumnos.GuardarActualizar(tipoOperacion);
+                        MessageBox.Show(msg, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Ocurrio un error al intentar eliminar el registro: " + ex.Message, "Error Operacional", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    msg = alumnos.GuardarActualizar(tipoOperacion);
+                    MessageBox.Show(msg, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                CargarGrid(); //Refrescamos la tabla del formulario para ver los cambios
             }
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudieron guardar los datos: " + ex.Message, "Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }
