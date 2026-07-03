@@ -157,6 +157,7 @@ namespace prySistemaEscolar
         {
             try
             {
+
                 //Determinamos el tipo de operacion 
                 int tipoOperacion = idMatricula == 0 ? 0 : 1;
 
