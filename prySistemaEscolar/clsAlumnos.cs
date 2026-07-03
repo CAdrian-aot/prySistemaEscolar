@@ -25,6 +25,7 @@ namespace prySistemaEscolar
         // Adaptador y tabla virtuales de la clase 
         private MySqlDataAdapter consulta;
         private DataTable tabla;
+        private MySqlCommand comando;
 
         // Propiedades
         public int Matricula { get => matricula; set => matricula = value; }
@@ -185,5 +186,56 @@ namespace prySistemaEscolar
             }
             return tabla;
         }
+
+        public string Eliminar()
+        {
+            string msg = "";
+            ClsConexion conexionBD = new ClsConexion();
+
+            try
+            {
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    using (var transaccion = conexion.BeginTransaction())
+                    {
+                        try
+                        {
+                            //eliminamos alumnos
+                            string sqlDelAlumno = " DELETE FROM tblalumnos WHERE matricula = @matricula;";
+                            using (comando = new MySqlCommand(sqlDelAlumno, conexion, transaccion))
+                            {
+                                comando.Parameters.AddWithValue("@matricula", matricula);
+                                comando.ExecuteNonQuery();
+                            }
+                            //eliminamos el usuario
+                            string sqlDelUsuario = " DELETE FROM tblusuarios WHERE intidUsuario = @idUsuario;";
+                            using (comando  = new MySqlCommand(sqlDelUsuario, conexion, transaccion))
+                            {
+                                comando.Parameters.AddWithValue("@idusuario", idusuario);
+                                comando.ExecuteNonQuery();
+                            }
+                            //si ambas se eliminan correctamente 
+                            transaccion.Commit();
+                            msg = "El alumno y sus credenciales de usuario han sido eliminados del sistema.";
+                        }
+                        catch (Exception ex)
+                        {
+                            //Si algo falla, deshacemos la operacion para no dejar datos huerfanos
+                            transaccion.Rollback();
+                            throw new Exception("No se pudo completar la eliminacion. Cambios revertidos: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error de conexion al eliminar: " + ex.Message);
+            }
+
+            return msg;
+        }
+
+
+
     }
 }
