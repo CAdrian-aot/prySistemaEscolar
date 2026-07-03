@@ -258,6 +258,7 @@
             btnGuardar.Size = new Size(121, 68);
             btnGuardar.TabIndex = 14;
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // txtBuscarMatricula
             // 
