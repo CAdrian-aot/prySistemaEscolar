@@ -21,7 +21,10 @@ namespace prySistemaEscolar
         private int idTutor; // Foraneo
         private int idCarrera; // Foraneo
         private int idusuario;
-
+        //Nuevos
+        private string nombreUsuario;
+        private string password;
+        private string perfil;
         // Adaptador y tabla virtuales de la clase 
         private MySqlDataAdapter consulta;
         private DataTable tabla;
@@ -39,6 +42,9 @@ namespace prySistemaEscolar
         public int IdTutor { get => idTutor; set => idTutor = value; }
         public int IdCarrera { get => idCarrera; set => idCarrera = value; }
         public int Idusuario { get => idusuario; set => idusuario = value; }
+        public string NombreUsuario { get => nombreUsuario; set => nombreUsuario = value; }
+        public string Password { get => password; set => password = value; }
+        public string Perfil { get => perfil; set => perfil = value; }
 
         //Metodo para cargar datos en el DataGrid//
         public DataTable CargarDataGrid()
@@ -235,7 +241,106 @@ namespace prySistemaEscolar
             return msg;
         }
 
+        public string GuardarActualizar(int tipoOperacion)
+        {
+            string msg = "";
+            ClsConexion conexionBD = new ClsConexion();
+            try
+            {
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    using (var transaccion = conexion.BeginTransaction())
+                    {
+                        try
+                        {
+                            switch (tipoOperacion)
+                            {
+                                case 0://Nuevo e insertar
+                                       //Insertar en la tabla tblusuarios
+                                    string sqlInUser = "INSERT INTO tblusuarios(vchnombreUsuario, vchpassword, vchperfil, vchestado) " +
+                                        "VALUES(@nomUser, MD5(@pass), @perfil, ‘Activo’); SELECT LAST_INSERT_ID();";
+                                    int nuevoUsuario = 0;
+                                    using (comando = new MySqlCommand(sqlInUser, conexion, transaccion))
+                                    {
+                                        comando.Parameters.AddWithValue("@nomUser", nombreUsuario);
+                                        comando.Parameters.AddWithValue("@pass", password);
+                                        comando.Parameters.AddWithValue("@perfil", perfil);
+                                        nuevoUsuario = Convert.ToInt32(comando.ExecuteScalar());
+                                    }
+                                    //Paso B: Insertar el alumno en tblalumnos vinculado al ID del usuario obtenido
+                                    string sqlInAlumno = "INSERT INTO tblalumnos(nombreAlumno, apellidoP, apellidoM, direccion, telefono, correo, promedioBachillerato, idTutor, idCarrera, idUsuario) " +
+                                        "VALUES(@matricula, @idUsuario, @nombre, @apP, @apM, @dir, @tel, @correo, @prom, @idTutor, @idCarrera);";
+                                    using (comando = new MySqlCommand(sqlInAlumno, conexion, transaccion))
+                                    {
+                                        comando.Parameters.AddWithValue("@matricula", matricula);
+                                        comando.Parameters.AddWithValue("@idUsuario", nuevoUsuario);
+                                        comando.Parameters.AddWithValue("@nombre", nombreAlumno);
+                                        comando.Parameters.AddWithValue("@apP", apellidoP);
+                                        comando.Parameters.AddWithValue("@apM", apellidoM);
+                                        comando.Parameters.AddWithValue("@dir", direccion);
+                                        comando.Parameters.AddWithValue("@tel", telefono);
+                                        comando.Parameters.AddWithValue("@correo", correo);
+                                        comando.Parameters.AddWithValue("@prom", promedioBachillerato);
+                                        comando.Parameters.AddWithValue("@idTutor", idTutor);
+                                        comando.Parameters.AddWithValue("@idCarrera", idCarrera);
 
+                                        comando.ExecuteNonQuery();
+                                    }
+
+                                    msg = "El alumno y sus credenciales se guardaron correctamente.";
+                                    break;
+                                case 1://Actualizar
+                                       //Paso A: Actualizar la tabla tblusuarios usando el ID que recuperamos en el click
+                                    string sqlUpUser = "UPDATE tblusuarios SET vchnombreUsuario = @nomUser, vchpassword = MD5(@pass), vchperfil = @perfil WHERE intidUsuario = @idUsuario;";
+                                    using (comando = new MySqlCommand(sqlUpUser, conexion, transaccion))
+                                    {
+                                        comando.Parameters.AddWithValue("@idUsuario", idusuario);
+                                        comando.Parameters.AddWithValue("@nomUser", nombreUsuario);
+                                        comando.Parameters.AddWithValue("@pass", password);
+                                        comando.Parameters.AddWithValue("@perfil", perfil);
+
+                                        comando.ExecuteNonQuery();
+                                    }
+                                    //Paso B: Actualizar el alumno en tblalumnos usando el ID que recuperamos en el click
+                                    string sqlUpAlumno = "UPDATE tblalumnos SET nombreAlumno = @nombre, apellidoP = @apP, apellidoM = @apM, direccion = @dir, telefono = @tel, " +
+                                        "correo = @correo, promedioBachillerato = @prom, idTutor = @idTutor, idCarrera = @idCarrera WHERE matricula = @matricula;";
+                                    using (comando = new MySqlCommand(sqlUpAlumno, conexion, transaccion))
+                                    {
+                                        comando.Parameters.AddWithValue("@matricula", matricula);
+                                        comando.Parameters.AddWithValue("@nombre", nombreAlumno);
+                                        comando.Parameters.AddWithValue("@apP", apellidoP);
+                                        comando.Parameters.AddWithValue("@apM", apellidoM);
+                                        comando.Parameters.AddWithValue("@dir", direccion);
+                                        comando.Parameters.AddWithValue("@tel", telefono);
+                                        comando.Parameters.AddWithValue("@correo", correo);
+                                        comando.Parameters.AddWithValue("@prom", promedioBachillerato);
+                                        comando.Parameters.AddWithValue("@idTutor", idTutor);
+                                        comando.Parameters.AddWithValue("@idCarrera", idCarrera);
+                                        comando.ExecuteNonQuery();
+                                    }
+
+                                    msg = "Los datos del alumno se actualizaron correctamente.";
+                                    break;
+                            }
+                            //Si todo se ejecutó sin errores en el switch, confirmamos en la BD
+                            transaccion.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            //Si algo falló (en el usuario o en el alumno), dehacemos todo para evitar incosistencias
+                            transaccion.Rollback();
+                            throw new Exception("Error en la operación. Se cancelaron los cambios: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la conexión: " + ex.Message);
+            }
+
+            return msg;
+        }//Finaliza el método GuardarActualizar
 
     }
 }

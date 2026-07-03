@@ -175,7 +175,7 @@ namespace prySistemaEscolar
                 alumnos.IdTutor = Convert.ToInt32(cmbTutor.SelectedValue);
 
                 // 2. Llenamos las propiedades del bloque Usuario
-                alumnos.IdUsuario = idUsuario; //Sera 0 si es nuevo, o el ID real si es update
+                alumnos.Idusuario = idUsuario; //Sera 0 si es nuevo, o el ID real si es update
                 alumnos.NombreUsuario = txtUsuario.Text;
                 alumnos.Password = txtPassword.Text;
                 alumnos.Perfil = cmbPerfil.Text;
@@ -197,7 +197,7 @@ namespace prySistemaEscolar
                     msg = alumnos.GuardarActualizar(tipoOperacion);
                     MessageBox.Show(msg, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                CargarGrid(); //Refrescamos la tabla del formulario para ver los cambios
+                cargarGrid(); //Refrescamos la tabla del formulario para ver los cambios
             }
             catch (Exception ex)
             {
