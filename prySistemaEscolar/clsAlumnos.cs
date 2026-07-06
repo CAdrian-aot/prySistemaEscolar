@@ -258,7 +258,7 @@ namespace prySistemaEscolar
                                 case 0://Nuevo e insertar
                                        //Insertar en la tabla tblusuarios
                                     string sqlInUser = "INSERT INTO tblusuarios(vchnombreUsuario, vchpassword, vchperfil, vchestado) " +
-                                        "VALUES(@nomUser, MD5(@pass), @perfil, ‘Activo’); SELECT LAST_INSERT_ID();";
+                                        "VALUES(@nomUser, MD5(@pass), @perfil, 'Activo'); SELECT LAST_INSERT_ID();";
                                     int nuevoUsuario = 0;
                                     using (comando = new MySqlCommand(sqlInUser, conexion, transaccion))
                                     {
@@ -268,12 +268,11 @@ namespace prySistemaEscolar
                                         nuevoUsuario = Convert.ToInt32(comando.ExecuteScalar());
                                     }
                                     //Paso B: Insertar el alumno en tblalumnos vinculado al ID del usuario obtenido
-                                    string sqlInAlumno = "INSERT INTO tblalumnos(nombreAlumno, apellidoP, apellidoM, direccion, telefono, correo, promedioBachillerato, idTutor, idCarrera, idUsuario) " +
-                                        "VALUES(@matricula, @idUsuario, @nombre, @apP, @apM, @dir, @tel, @correo, @prom, @idTutor, @idCarrera);";
+                                    string sqlInAlumno = "INSERT INTO tblalumnos(matricula, nombreAlumno, apellidoP, apellidoM, direccion, telefono, correo, promedioBachillerato, idTutor, idCarrera, idUsuario) " +
+                                        "VALUES(@matricula, @nombre, @apP, @apM, @dir, @tel, @correo, @prom, @idTutor, @idCarrera, @idUsuario);";
                                     using (comando = new MySqlCommand(sqlInAlumno, conexion, transaccion))
                                     {
-                                        comando.Parameters.AddWithValue("@matricula", matricula);
-                                        comando.Parameters.AddWithValue("@idUsuario", nuevoUsuario);
+                                        comando.Parameters.AddWithValue("@matricula", matricula);                                        
                                         comando.Parameters.AddWithValue("@nombre", nombreAlumno);
                                         comando.Parameters.AddWithValue("@apP", apellidoP);
                                         comando.Parameters.AddWithValue("@apM", apellidoM);
@@ -283,6 +282,7 @@ namespace prySistemaEscolar
                                         comando.Parameters.AddWithValue("@prom", promedioBachillerato);
                                         comando.Parameters.AddWithValue("@idTutor", idTutor);
                                         comando.Parameters.AddWithValue("@idCarrera", idCarrera);
+                                        comando.Parameters.AddWithValue("@idUsuario", nuevoUsuario);
 
                                         comando.ExecuteNonQuery();
                                     }
@@ -344,3 +344,4 @@ namespace prySistemaEscolar
 
     }
 }
+//Si se requiere un campo identificado, se crea un campo tipo indice

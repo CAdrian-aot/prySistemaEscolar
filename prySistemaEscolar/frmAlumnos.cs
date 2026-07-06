@@ -126,7 +126,7 @@ namespace prySistemaEscolar
             {
                 //Para saber si es nuevo o se va a actualizar
                 idMatricula = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
-                idUsuario = int.Parse(dgvAlumnos.CurrentRow.Cells["Matricula"].Value.ToString());
+                idUsuario = int.Parse(dgvAlumnos.CurrentRow.Cells["idUsuario"].Value.ToString());
 
                 //Para la tabla de alumnos
                 txtMatricula.Text = idMatricula.ToString();
