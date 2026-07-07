@@ -37,9 +37,9 @@ namespace prySistemaEscolar
         public string Password { get => password; set => password = value; }
         public string Perfil { get => perfil; set => perfil = value; }
 
-        //Pegar lo de "Aporte 1 (-- Primera parte --)" (Borrar este comentario)
+        //Aporte 1 (-- Primera parte --)
 
-        //Pegar lo de "Aporte 2_1" (Borrar este comentario)
+        //Aporte 2_1
 
         //Método para insertar o actualizar un registro
         public string GuardarActualizar(int tipoOperacion)
@@ -133,7 +133,7 @@ namespace prySistemaEscolar
             return msg;
         }
 
-        //Pegar lo de "Aporte 3" (-- Primera parte --) (Borrar este comentario)
+        //Aporte 3 (-- Primera parte --)
 
     }
 }

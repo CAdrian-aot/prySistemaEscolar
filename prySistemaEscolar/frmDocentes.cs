@@ -12,17 +12,17 @@ namespace prySistemaEscolar
 {
     public partial class frmDocentes : Form
     {
-        //Pegar lo de "Aporte 2_2 (-- Primera parte --)" (Borrar este comentario)
+        //Aporte 2_2 (-- Primera parte --)
         public frmDocentes()
         {
             InitializeComponent();
-            //Pegar lo de "Aporte 2_2 (-- Segunda parte --)" (Borrar este comentario)
+            //Aporte 2_2 (-- Segunda parte --)
         }
 
-        //Pegar lo de "Aporte 2_2 (-- Tercera parte --)" (Borrar este comentario)
+        //Aporte 2_2 (-- Tercera parte --)
 
 
-        //Pegar lo de "Aporte 1 (-- Segunda parte --)" (Borrar este comentario)
+        //Aporte 1 (-- Segunda parte --)
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -72,6 +72,6 @@ namespace prySistemaEscolar
             }
         }
 
-        //Pegar de lo "Aporte 3" (-- Segunda parte --) (Borrar este comentario)
+        //Aporte 3 (-- Segunda parte --) 
     }
 }
