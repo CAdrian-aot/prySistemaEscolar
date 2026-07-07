@@ -17,7 +17,7 @@ namespace prySistemaEscolar
         private string direccion;
         private string telefono;
         private string correo;
-        private decimal promedioBachillerato;
+        private decimal promedioBachillerato; 
         private int idTutor; // Foraneo
         private int idCarrera; // Foraneo
         private int idusuario;

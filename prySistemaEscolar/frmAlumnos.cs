@@ -72,7 +72,7 @@ namespace prySistemaEscolar
                 // creamos la fila del planceholder para la carrera
                 DataRow filaPTutores = dtTutores.NewRow();
                 filaPTutores["idTutor"] = 0;
-                filaPTutores["nombreTutor"] = "-- Selecciona un Tutoro --";
+                filaPTutores["nombreTutor"] = "-- Selecciona un Tutor --";
                 dtTutores.Rows.InsertAt(filaPTutores, 0);
 
                 //Enlazados los datos al comboBox visual
@@ -164,21 +164,21 @@ namespace prySistemaEscolar
                 alumnos = new clsAlumnos();
                 // 1. Llenamos las propiedades del bloque Alumno
                 alumnos.Matricula = int.Parse(txtMatricula.Text);
-                alumnos.NombreAlumno = txtNombre.Text;
-                alumnos.ApellidoP = txtAPaterno.Text;
-                alumnos.ApellidoM = txtAMaterno.Text;
-                alumnos.Direccion = txtDireccion.Text;
-                alumnos.Telefono = txtTelefono.Text;
-                alumnos.Correo = txtCorreo.Text;
+                alumnos.NombreAlumno = string.IsNullOrEmpty(txtNombre.Text) ? null : txtNombre.Text;
+                alumnos.ApellidoP = string.IsNullOrEmpty(txtAPaterno.Text) ? null : txtAPaterno.Text;
+                alumnos.ApellidoM = string.IsNullOrEmpty(txtAMaterno.Text) ? null : txtAMaterno.Text;
+                alumnos.Direccion = string.IsNullOrEmpty(txtDireccion.Text) ? null : txtDireccion.Text;
+                alumnos.Telefono = string.IsNullOrEmpty(txtTelefono.Text) ? null : txtTelefono.Text;
+                alumnos.Correo = string.IsNullOrEmpty(txtCorreo.Text) ? null : txtCorreo.Text;
                 alumnos.PromedioBachillerato = decimal.Parse(txtPromedioBachiller.Text);
                 alumnos.IdCarrera = Convert.ToInt32(cmbCarrera.SelectedValue);
                 alumnos.IdTutor = Convert.ToInt32(cmbTutor.SelectedValue);
 
                 // 2. Llenamos las propiedades del bloque Usuario
                 alumnos.Idusuario = idUsuario; //Sera 0 si es nuevo, o el ID real si es update
-                alumnos.NombreUsuario = txtUsuario.Text;
-                alumnos.Password = txtPassword.Text;
-                alumnos.Perfil = cmbPerfil.Text;
+                alumnos.NombreUsuario = string.IsNullOrEmpty(txtUsuario.Text) ? null : txtUsuario.Text;
+                alumnos.Password = string.IsNullOrEmpty(txtPassword.Text) ? null : txtPassword.Text;
+                alumnos.Perfil = string.IsNullOrEmpty(cmbPerfil.Text) ? null : cmbPerfil.Text;
 
                 string msg = "";
 
