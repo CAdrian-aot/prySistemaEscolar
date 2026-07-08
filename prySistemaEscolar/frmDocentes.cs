@@ -89,7 +89,20 @@ namespace prySistemaEscolar
             }
         }
 
-        //Aporte 1 (-- Segunda parte --)
+        public void LimpiarPanel(Panel panelDestino)
+        {
+            foreach (Control control in panelDestino.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+                else if (control is ComboBox)
+                {
+                    ((ComboBox)control).SelectedIndex = 0;
+                }
+            }
+        }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
