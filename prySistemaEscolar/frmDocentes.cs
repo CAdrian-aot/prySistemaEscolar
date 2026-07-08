@@ -72,6 +72,31 @@ namespace prySistemaEscolar
             }
         }
 
-        //Aporte 3 (-- Segunda parte --) 
+         
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var respuesta = MessageBox.Show($"¿Esás seguro de eliminar permanenetemente al docente con clave {idClave}?\nEsta acción también borra su cuenta de usuario.", "¡ADVERTENCIA!", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                try
+                {
+                    docentes = new clsDocentes();
+
+                    docentes.Clave = idClave;
+                    docentes.IdUsuario = idUsuario;
+
+                    string resultado = docentes.Eliminar();
+
+                    MessageBox.Show(resultado, "Registro eliminado correctamnete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    cargarDataGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al intentar eliminar el registro : " + ex.Message, "Error operacional", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

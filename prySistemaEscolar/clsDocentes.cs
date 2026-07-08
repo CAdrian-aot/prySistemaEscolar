@@ -133,7 +133,55 @@ namespace prySistemaEscolar
             return msg;
         }
 
-        //Aporte 3 (-- Primera parte --)
+        
+        //Método para eliminar un registro
+        public string Eliminar()
+        {
+            string msg = "";
+            ClsConexion conexionBD = new ClsConexion();
+
+            try
+            {
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    using (var transaccion = conexion.BeginTransaction())
+                    {
+                        try
+                        {
+                            //Eliminar el registro de docentes
+                            string sqlDocente = "DELETE FROM tbldocentes WHERE claveDocente = @claveDocente;";
+                            using (comando = new MySqlCommand(sqlDocente, conexion, transaccion))
+                            {
+                                comando.Parameters.AddWithValue("@claveDocente", clave);
+                                comando.ExecuteNonQuery();
+                            }
+                            //Eliminar el registro de usuarios
+                            string sqlUsuario = "DELETE FROM tblusuarios WHERE intidUsuario = @idUsuario;";
+                            using (comando = new MySqlCommand(sqlUsuario, conexion, transaccion))
+                            {
+                                comando.Parameters.AddWithValue("@idUsuario", idUsuario);
+                                comando.ExecuteNonQuery();
+                            }
+                            //Confirmar la transacción
+                            transaccion.Commit();
+                            msg = "Registro eliminado correctamente del sistema.";
+                        }
+                        catch (Exception ex)
+                        {
+                            //Hacer rollback en caso de error
+                            transaccion.Rollback();
+                            throw new Exception("Error en la operación, se cancelaron los cambios: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = "Error en la conexión al eliminar: " + ex.Message;
+            }
+
+            return msg;
+        }
 
     }
 }
