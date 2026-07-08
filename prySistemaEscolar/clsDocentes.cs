@@ -37,9 +37,45 @@ namespace prySistemaEscolar
         public string Password { get => password; set => password = value; }
         public string Perfil { get => perfil; set => perfil = value; }
 
-        //Aporte 1 (-- Primera parte --)
+        //Método para cargar la tabla
+        public DataTable CargarDatagrid()
+        {
+            tabla = new DataTable();
 
-        
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "SELECT D.claveDocente AS Clave, " +
+                                 "D.idUsuario AS idUsuario, " +
+                                 "D.nombreDocente AS Nombre, " +
+                                 "D.puesto AS Puesto, " +
+                                 "U.vchnombreUsuario AS NombreUsuario, " +
+                                 "U.vchperfil AS Perfil, " +
+                                 "U.vchpassword AS Password, " +
+                                 "D.telefono AS Telefono, " +
+                                 "D.correo AS Correo " +
+                                 "FROM tbldocentes D " +
+                                 "INNER JOIN tblusuarios U ON D.idUsuario = U.intidUsuario;";
+                    using (var consulta = new MySqlDataAdapter(sql, conexion))
+                    {
+                        consulta.SelectCommand.Parameters.AddWithValue("@claveDocente", "%" + clave + "%");
+                        consulta.Fill(tabla);
+                    }//Libera la adaptador
+                }//Libera la cosulta
+            }//Libera conexión
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la conexión " + ex.Message);
+            }
+
+            return tabla;
+        }
+
+
+
         //Método para buscar en la tabla
         public DataTable Consultar()
         {
