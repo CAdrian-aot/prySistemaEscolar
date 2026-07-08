@@ -12,15 +12,82 @@ namespace prySistemaEscolar
 {
     public partial class frmDocentes : Form
     {
-        //Aporte 2_2 (-- Primera parte --)
+        
+        clsDocentes docentes;
+
+        int idClave;
+        int idUsuario;
         public frmDocentes()
         {
             InitializeComponent();
-            //Aporte 2_2 (-- Segunda parte --)
+            cargarDataGrid();
+            placeholderComboBox();
         }
 
-        //Aporte 2_2 (-- Tercera parte --)
+        //Cargar tabla
+        public void cargarDataGrid()
+        {
+            clsDocentes docentes = new clsDocentes();
 
+            dgvDocentes.DataSource = null;
+            dgvDocentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            try
+            {
+                dgvDocentes.DataSource = docentes.CargarDatagrid();
+                dgvDocentes.Columns["NombreUsuario"].Visible = false;
+                dgvDocentes.Columns["Perfil"].Visible = false;
+                dgvDocentes.Columns["Password"].Visible = false;
+                dgvDocentes.Columns["idUsuario"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //Mostrar placeholder en los combobox
+        public void placeholderComboBox()
+        {
+            cmbPuesto.SelectedIndex = 0;
+            cmbPerfil.SelectedIndex = 0;
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            docentes = new clsDocentes();
+
+            idClave = 0;
+            idUsuario = 0;
+            cmbPuesto.SelectedIndex = 0;
+            cmbPerfil.SelectedIndex = 0;
+            docentes.LimpiarPanel(pnlDocente);
+            docentes.LimpiarPanel(pnlUsuario);
+            txtClave.Focus();
+        }
+
+        private void txtBuscarClave_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBuscarClave.Text))
+            {
+                cargarDataGrid();
+                return;
+            }
+
+            docentes = new clsDocentes();
+            dgvDocentes.DataSource = null;
+            dgvDocentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            try
+            {
+                docentes.Clave = int.Parse(txtBuscarClave.Text);
+                dgvDocentes.DataSource = docentes.Consultar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         //Aporte 1 (-- Segunda parte --)
 

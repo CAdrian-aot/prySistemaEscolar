@@ -39,7 +39,47 @@ namespace prySistemaEscolar
 
         //Aporte 1 (-- Primera parte --)
 
-        //Aporte 2_1
+        
+        //Método para buscar en la tabla
+        public DataTable Consultar()
+        {
+            tabla = new DataTable();
+
+            try
+            {
+                ClsConexion conexionBD = new ClsConexion();
+
+                using (var conexion = conexionBD.AbrirConexion())
+                {
+                    string sql = "SELECT D.claveDocente AS Clave, " +
+                                 "D.idUsuario AS idUsuario, " +
+                                 "D.nombreDocente AS Nombre, " +
+                                 "D.puesto AS Puesto, " +
+                                 "U.vchnombreUsuario AS NombreUsuario, " +
+                                 "U.vchperfil AS Perfil, " +
+                                 "U.vchpassword AS Password, " +
+                                 "D.telefono AS Telefono, " +
+                                 "D.correo AS Correo " +
+                                 "FROM tbldocentes D " +
+                                 "INNER JOIN tblusuarios U ON D.idUsuario = U.intidUsuario " +
+                                 "WHERE D.claveDocente LIKE @claveDocente;";
+                    using (var consultar = new MySqlCommand(sql, conexion))
+                    {
+                        consultar.Parameters.AddWithValue("@claveDocente", "%" + clave + "%");
+                        using (consulta = new MySqlDataAdapter(consultar))
+                        {
+                            consulta.Fill(tabla);
+                        }//Libera adaptador
+                    }//Libera consulta
+                }//Libera conexión
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la conexión " + ex.Message);
+            }
+
+            return tabla;
+        }
 
         //Método para insertar o actualizar un registro
         public string GuardarActualizar(int tipoOperacion)
